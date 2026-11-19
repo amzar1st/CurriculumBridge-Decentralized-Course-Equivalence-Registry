@@ -4,6 +4,8 @@ A standalone GenLayer Intelligent Contract that records **directional course-equ
 
 **Educational evidence only. It does not award credit, establish student eligibility, prove course completion, or represent an institution's endorsement.**
 
+**Live Studio demo:** deployed at `0x8d71589e91cc5C1Ea81398a956D93E195E24A29F`. The MIT → Harvard comparison finalized as **INCONCLUSIVE (85/100)** because target practical-assessment evidence is missing. See [deployment proof and transaction record](docs/DEPLOYMENT.md). All 22 behavioral tests and the syntax check pass in GitHub Actions.
+
 ## What is implemented
 
 - Immutable course versions containing source URL, full rendered syllabus snapshot and SHA-256 fingerprint.

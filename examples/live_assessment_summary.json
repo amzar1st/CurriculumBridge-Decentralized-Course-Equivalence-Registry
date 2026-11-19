@@ -1,0 +1,27 @@
+{
+  "contract_address": "0x8d71589e91cc5C1Ea81398a956D93E195E24A29F",
+  "environment": "GenLayer hosted Studio",
+  "source_sha256": "5fc97aae9495b9dcaa99e40bae114c913708080fe3872b47683d542eabc105ee",
+  "assessment_id": "cb53aadb5ac54e4256de6261c0246230293835fe44ce7c1d8eff8c2626eff02a",
+  "evaluation_transaction": "0x74fa9d371ce6955ffc3227a24eabde70be57a6e75697423d27c16558614b1db5",
+  "verdict": "INCONCLUSIVE",
+  "score": 85,
+  "coverage": {
+    "fundamentals": "MET",
+    "decomposition": "MET",
+    "data": "MET",
+    "testing": "MET",
+    "practice": "UNKNOWN"
+  },
+  "gaps": [
+    "practice"
+  ],
+  "missing_evidence": [
+    "practice"
+  ],
+  "academic_credit_awarded": false,
+  "course_a_hash": "83cacc74409faa8d8f5a7c61b20668cd417f041da3b99210f1785d5c9ff1b9ea",
+  "course_b_hash": "c11978f75bab1fe9823cd226ab19d7ca4ef0c6c330cdc068448c8731c0ce74de",
+  "rubric_id": "99cda04687be8038528ab04507aabb188f4524cc533ecdb42aff1aafbb9614c1",
+  "note": "Summary of live contract result; use get_equivalence for complete evidence anchors and current status."
+}
