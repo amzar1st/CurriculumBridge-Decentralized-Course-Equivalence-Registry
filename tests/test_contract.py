@@ -36,7 +36,7 @@ class ContractTests(unittest.TestCase):
         self.rid = self.c.create_rubric(json.dumps(self.r))
         self.id = self.c.request_equivalence(self.a,self.b,self.rid)
         self.raw = {'authenticity':['OFFICIAL','OFFICIAL'],'hours':-1,'competencies':[
-            {'id':c['id'],'coverage':'MET','a_quote':'Variables','b_quote':'Variables'} for c in self.r['competencies']]}
+            {'id':c['id'],'coverage':'MET','a_line':0,'b_line':0} for c in self.r['competencies']]}
         gl.nondet.exec_prompt = lambda p,**kw:json.dumps(self.raw)
         def run(leader,validator):
             self.validator=validator
@@ -63,7 +63,7 @@ class ContractTests(unittest.TestCase):
         for row in self.raw['competencies']:row['coverage']='ABSENT'
         self.assertEqual(self.norm()['verdict'],'NOT_EQUIVALENT')
     def test_missing_evidence(self):
-        self.raw['competencies'][0].update(coverage='UNKNOWN',a_quote='')
+        self.raw['competencies'][0].update(coverage='UNKNOWN',a_line=-1)
         self.assertEqual(self.norm()['verdict'],'INCONCLUSIVE')
     def test_unknown_hours_only_when_required(self):
         self.assertEqual(self.norm()['verdict'],'EQUIVALENT')
@@ -75,11 +75,15 @@ class ContractTests(unittest.TestCase):
     def test_unverified_source(self):
         self.raw['authenticity'][0]='UNVERIFIED'
         self.assertEqual(self.norm()['verdict'],'INCONCLUSIVE')
-    def test_fabricated_quote(self):
-        self.raw['competencies'][0]['a_quote']='invented'
+    def test_invalid_evidence_anchor(self):
+        self.raw['competencies'][0]['a_line']=9999
         with self.assertRaises(UserError):self.norm()
+    def test_quotes_derived_from_locked_lines(self):
+        result = self.norm()
+        self.assertEqual(result['competencies'][0]['a_quote'], self.snapshot.strip())
+        self.assertIn(result['competencies'][0]['a_quote'], self.snapshot)
     def test_target_quote_required(self):
-        self.raw['competencies'][0]['b_quote']=''
+        self.raw['competencies'][0]['b_line']=-1
         with self.assertRaises(UserError):self.norm()
     def test_bad_rubrics(self):
         for change in ('weight','id','core'):

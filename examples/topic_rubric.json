@@ -1,0 +1,38 @@
+{
+  "name": "Introductory Python topic coverage v2",
+  "equivalent_min": 80,
+  "partial_min": 40,
+  "min_hours": 0,
+  "competencies": [
+    {
+      "id": "fundamentals",
+      "description": "Branching and iteration in Python programs.",
+      "weight": 25,
+      "core": true
+    },
+    {
+      "id": "decomposition",
+      "description": "Functions and decomposition of programming problems.",
+      "weight": 25,
+      "core": true
+    },
+    {
+      "id": "data",
+      "description": "Collections such as lists and dictionaries.",
+      "weight": 20,
+      "core": false
+    },
+    {
+      "id": "testing",
+      "description": "Testing and debugging Python programs.",
+      "weight": 15,
+      "core": false
+    },
+    {
+      "id": "practice",
+      "description": "Required or assessed practical programming assignments or projects.",
+      "weight": 15,
+      "core": true
+    }
+  ]
+}

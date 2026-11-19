@@ -2,7 +2,7 @@
 
 Deploy `contracts/curriculum_bridge.py` in Studio, with no constructor arguments, using the inbuilt account and full consensus. Keep this account selected for rubric creation/invalidation.
 
-1. Call `create_rubric(rubric_json)` with the exact JSON from `examples/programming_rubric.json`. Save the returned rubric ID.
+1. Call `create_rubric(rubric_json)` with the exact JSON from `examples/topic_rubric.json` (the compact topic-coverage rubric). `examples/programming_rubric.json` is a broader prerequisite rubric for exploring stricter evidence requirements. Save the returned rubric ID.
 2. Call `register_course` for source A:
    - institution: `Massachusetts Institute of Technology`
    - code: `6.0001 Introduction to Computer Science and Programming in Python`
@@ -21,3 +21,7 @@ Deploy `contracts/curriculum_bridge.py` in Studio, with no constructor arguments
 9. To demonstrate versioning, register changed course evidence or a changed rubric and create a new request. The curator may call `invalidate_assessment(old_id, reason, replacement_id)` only after the replacement is evaluated; use an empty replacement ID when none exists. The original result remains readable with INVALIDATED status.
 
 Do not preselect a desired verdict: the public pages may omit assessment detail, course duration or target competencies. An INCONCLUSIVE result is a meaningful evidence-gap finding. Test fixtures intentionally contain synthetic snippets; they are not claims about these institutions.
+
+## Why two rubric examples?
+
+The broad v1 rubric requires several subskills and assessment depth in each row. Live providers disagreed on whether short topic headings establish those requirements. The topic v2 rubric gives five smaller, explicit requirements. Both versions are immutable and have different IDs; creating v2 does not rewrite v1 or reclassify its assessment. A failed consensus attempt leaves the request REQUESTED with no result, even if a transaction inspector displays an individual leader's proposed output. Always read contract state.
