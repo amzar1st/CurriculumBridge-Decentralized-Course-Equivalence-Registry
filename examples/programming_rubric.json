@@ -1,0 +1,13 @@
+{
+  "name": "Introductory Python prerequisite v1",
+  "equivalent_min": 80,
+  "partial_min": 40,
+  "min_hours": 0,
+  "competencies": [
+    {"id": "fundamentals", "description": "Variables, types, expressions, conditionals and loops; ability to write working Python programs.", "weight": 25, "core": true},
+    {"id": "decomposition", "description": "Functions, parameters, return values and decomposition of problems into reusable components.", "weight": 25, "core": true},
+    {"id": "data", "description": "Practical use of strings and collections such as lists, tuples or dictionaries.", "weight": 20, "core": false},
+    {"id": "testing", "description": "Testing and debugging programs, reasoning about errors and correcting faulty behavior.", "weight": 15, "core": false},
+    {"id": "practice", "description": "Assessed practical programming exercises or a programming project demonstrating independent implementation.", "weight": 15, "core": true}
+  ]
+}
