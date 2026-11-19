@@ -37,7 +37,7 @@ class ContractTests(unittest.TestCase):
         self.id = self.c.request_equivalence(self.a,self.b,self.rid)
         self.raw = {'authenticity':['OFFICIAL','OFFICIAL'],'hours':-1,'competencies':[
             {'id':c['id'],'coverage':'MET','a_quote':'Variables','b_quote':'Variables'} for c in self.r['competencies']]}
-        gl.nondet.exec_prompt = lambda p:json.dumps(self.raw)
+        gl.nondet.exec_prompt = lambda p,**kw:json.dumps(self.raw)
         def run(leader,validator):
             self.validator=validator
             result=leader()
@@ -49,6 +49,12 @@ class ContractTests(unittest.TestCase):
     def test_equivalent(self):
         self.assertEqual(json.loads(self.c.evaluate_equivalence(self.id))['verdict'],'EQUIVALENT')
         self.assertFalse(json.loads(self.c.get_equivalence(self.id))['result']['academic_credit_awarded'])
+    def test_structured_provider_response(self):
+        def provider(prompt, **kwargs):
+            self.assertEqual(kwargs.get("response_format"), "json")
+            return copy.deepcopy(self.raw)
+        gl.nondet.exec_prompt = provider
+        self.assertEqual(json.loads(self.c.evaluate_equivalence(self.id))["verdict"], "EQUIVALENT")
     def test_core_gap_overrides_high_score(self):
         self.raw['competencies'][4]['coverage']='PARTIAL'
         self.assertEqual(self.norm()['verdict'],'PARTIAL')
